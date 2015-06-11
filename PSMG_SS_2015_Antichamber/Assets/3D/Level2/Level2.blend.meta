@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 4a329a40f6477914d8f3a437aae1ba88
-timeCreated: 1432234459
+guid: 3d4d07e4806b0a84c8447d5568f82f2d
+timeCreated: 1434018353
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
     100002: Plane
-    100004: Plane_001
+    100004: Room_2
     400000: //RootNode
     400002: Plane
-    400004: Plane_001
+    400004: Room_2
     2300000: Plane
-    2300002: Plane_001
+    2300002: Room_2
     3300000: Plane
-    3300002: Plane_001
-    4300000: Plane_001
-    4300002: Plane
+    3300002: Room_2
+    4300000: Plane
+    4300002: Room_2
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -72,7 +72,7 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
