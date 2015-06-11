@@ -15,7 +15,7 @@ GameObject:
   - 136: {fileID: 13688948}
   - 114: {fileID: 11471788}
   m_Layer: 0
-  m_Name: New Prefab 1
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111530}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
-  m_LocalPosition: {x: -.800000012, y: 2.79999995, z: -2.29999995}
+  m_LocalPosition: {x: -0, y: 1, z: 0}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 496074}
