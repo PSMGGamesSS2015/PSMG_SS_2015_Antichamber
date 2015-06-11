@@ -8,7 +8,7 @@ public class UIScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		text = GetComponent<Text> ();
+		text = GetComponentsInChildren<Text> ()[0];
 		text.enabled = false;
 	}
 	
