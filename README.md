@@ -1,8 +1,8 @@
 Team Antichamber
 =============
 
-### Prototype Download (Version 1.2):
-[Windows](https://drive.google.com/file/d/0B2YsotgQRQ0VdUZhOWMza0pHT3c/view?usp=sharing), [MacOS X](https://drive.google.com/file/d/0B2YsotgQRQ0VZnRQU3dnZmpMTHM/view?usp=sharing)
+### Prototype Download (Version 1.3):
+[Windows](https://drive.google.com/file/d/0B2YsotgQRQ0VQ0s0Z2M5SFNXVWs/view?usp=sharing), ~~MacOS X~~ (available soon.tm)
 
 This is the project we got to develop in the course PSMG SS2015.
 
