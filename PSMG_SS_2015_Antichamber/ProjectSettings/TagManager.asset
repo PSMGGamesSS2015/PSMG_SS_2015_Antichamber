@@ -4,10 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Level 1
+  - Level 2
   - Floor
+  - Start
   - New Tag
-  - New Tag
-  - New Tag
+  - Level 5
+  - Level 14
+  - Finaldoor
+  - Cube
   layers:
   - Default
   - TransparentFX
@@ -18,7 +23,7 @@ TagManager:
   - 
   - 
   - Inactive
-  - Portal
+  - Doorportal
   - 
   - 
   - 
