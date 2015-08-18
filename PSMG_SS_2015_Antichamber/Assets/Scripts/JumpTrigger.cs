@@ -11,13 +11,13 @@ public class JumpTrigger : MonoBehaviour {
 	}
 	
 	void OnTriggerStay(Collider other){
-		if (other.gameObject.tag == "Floor" || other.gameObject.tag == "Cube" || other.gameObject.tag == "Level4") {
+		if (other.gameObject.tag == "Floor" || other.gameObject.tag == "Cube") {
 			grounded = true;
 		}
 	}
 
 	void OnTriggerExit(Collider other){
-		if (other.gameObject.tag == "Floor" || other.gameObject.tag == "Cube" || other.gameObject.tag == "Level4") {
+		if (other.gameObject.tag == "Floor" || other.gameObject.tag == "Cube") {
 			grounded = false;
 		}
 	}

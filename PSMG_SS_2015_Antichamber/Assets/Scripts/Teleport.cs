@@ -22,6 +22,14 @@ public class Teleport : MonoBehaviour {
 			portal_id = Statics.LEVELB;
 			getStart();
 		}
+		if (gameObject.name == "Portal7") {
+			portal_id = Statics.LEVEL7;
+			getStart();
+		}
+		if (gameObject.name == "Portal8") {
+			portal_id = Statics.LEVEL8;
+			getStart();
+		}
 	}
 	
 	void OnTriggerEnter (Collider col) {

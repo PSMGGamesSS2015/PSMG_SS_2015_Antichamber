@@ -8,11 +8,17 @@ TagManager:
   - Level 2
   - Floor
   - Start
-  - New Tag
+  - Reset
   - Level 5
   - Level 14
   - Finaldoor
   - Cube
+  - Triggerdoor
+  - Level 7
+  - Lasercube
+  - Lasergoal
+  - Backwards
+  - Level 8
   layers:
   - Default
   - TransparentFX

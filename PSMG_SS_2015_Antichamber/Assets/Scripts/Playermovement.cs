@@ -53,7 +53,6 @@ public class Playermovement : MonoBehaviour {
 	}
 
 	void Update(){
-		Debug.Log (JumpTrigger.grounded);
 		if (JumpTrigger.grounded && Input.GetKeyDown(KeyCode.Space)) {
 			GetComponent<Rigidbody>().velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
 		}

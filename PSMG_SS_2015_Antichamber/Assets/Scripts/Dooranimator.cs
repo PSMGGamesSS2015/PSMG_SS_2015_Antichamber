@@ -37,16 +37,48 @@ public class Dooranimator : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider col){
-		if (col.tag == "Player" && !col.isTrigger) {
-			if(!opened){
+		if (tag == "Triggerdoor") {
+			if (col.tag == "Cube" && !opened) {
+				open ();
+			}
+		}
+		else if (col.tag == "Player" && !col.isTrigger) {
+			if(tag == "Backwards"){
+				float rotation = controller.player.transform.rotation.eulerAngles.y;
+				if(rotation > 130f && rotation < 230f){
+					if(!opened){
+						open ();
+					}
+				}else {
+					if(opened){
+						close ();
+					}
+				}
+			}else if(!opened){
 				open ();
 			}
 		}
 	}
 	
 	void OnTriggerExit(Collider col){
-		if (col.tag == "Player" && !col.isTrigger) {
-			if(opened){
+		if (tag == "Triggerdoor") {
+			if (col.tag == "Cube" && opened) {
+				close ();
+			}
+			if (col.tag == "Player" && !col.isTrigger) {
+				if(opened){
+					openable = false;
+					close ();
+				}
+			}
+		}
+		else if (col.tag == "Player" && !col.isTrigger) {
+			if(tag == "Backwards"){
+				openable = false;
+				if(opened){
+					close ();
+				}
+			}else if(opened){
 				close ();
 			}
 		}

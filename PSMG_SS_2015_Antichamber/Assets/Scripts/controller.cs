@@ -8,19 +8,22 @@ public class controller : MonoBehaviour {
 	public static int cubes = 0;
 	public static bool hasWeapon = false;
 	public static int laser = 0;
+	public static Camera portalcam;
 
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
+		foreach(Camera cam in player.GetComponentsInChildren<Camera>()){
+			if(!(cam.tag == "Main Camera")){
+				portalcam = cam;
+			}
+		}
+		portalcam.enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
-	}
-
-	void OnTriggerEnter(Collider other){
-
 	}
 
 	public static void level2(){
@@ -56,12 +59,29 @@ public class controller : MonoBehaviour {
 			rotationVal = 90f;
 			rot = new Vector3(0f, rotationVal, 0f);
 			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
+			GameObject cube = Statics.lvl5_cube;
+			CubeScript cs = cube.GetComponent<CubeScript>();
+			cube.transform.position = cs.start;
+			cube.transform.rotation = cs.rot;
 			break;
 		case Statics.LEVELB:
 			portvector = Statics.lvlB_start - portal_start;
 			rotationVal = 180f;
 			rot = new Vector3(0f, rotationVal, 0f);
 			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
+			break;
+		case Statics.LEVEL7:
+			portvector = Statics.lvl7_start - portal_start;
+			rotationVal = 180f;
+			rot = new Vector3(0f, rotationVal, 0f);
+			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
+			break;
+		case Statics.LEVEL8:
+			portvector = Statics.lvl8_start - portal_start;
+			rotationVal = 180f;
+			rot = new Vector3(0f, rotationVal, 0f);
+			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
+			portalcam.enabled = false;
 			break;
 		default:
 			portvector = Vector3.zero;
@@ -75,5 +95,10 @@ public class controller : MonoBehaviour {
 		player.GetComponent<Rigidbody> ().velocity = velocity;
 		player.transform.position += portvector;
 		player.transform.position -= diff;
+	}
+
+	public static void lasergoal(GameObject goal){
+		goal.GetComponent<Animation> ().Play ("Doorup");
+		portalcam.enabled = true;
 	}
 }
