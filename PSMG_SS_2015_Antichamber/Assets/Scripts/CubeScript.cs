@@ -38,8 +38,8 @@ public class CubeScript : MonoBehaviour {
 		if (Physics.Raycast (transform.position, -Vector3.up, out hit)) {
 			distanceToGround = hit.distance;
 		}
-		if (distanceToGround < 0.5f) {
-			rb.transform.position += new Vector3(0f, 0.5f - distanceToGround,0f);
+		if (distanceToGround < 0.5f * gameObject.transform.localScale.y) {
+			rb.transform.position += new Vector3(0f, 0.5f*gameObject.transform.localScale.y - distanceToGround,0f);
 		}
 	}
 }

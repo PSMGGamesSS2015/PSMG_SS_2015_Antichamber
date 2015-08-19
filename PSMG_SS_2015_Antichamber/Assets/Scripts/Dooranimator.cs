@@ -4,7 +4,7 @@ using System.Collections;
 public class Dooranimator : MonoBehaviour {
 	Animation[] doors;
 	bool opened = false;
-	bool openable = true;
+	public bool openable = true;
 
 	// Use this for initialization
 	void Start () {

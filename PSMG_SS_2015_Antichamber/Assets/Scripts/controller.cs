@@ -7,8 +7,12 @@ public class controller : MonoBehaviour {
 	public static bool blockCamera = false;
 	public static int cubes = 0;
 	public static bool hasWeapon = false;
+	public static bool hasMask = false;
+	public static bool small = false;
 	public static int laser = 0;
 	public static Camera portalcam;
+	public static int retsel = 0;
+	bool solved = false;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +27,15 @@ public class controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (retsel == 4 && !solved) {
+			solved = true;
+			Destroy(GameObject.FindGameObjectWithTag("Level15 Floor"));
+			foreach(Transform tf in GameObject.FindGameObjectWithTag("Level15 Stairs").GetComponentInChildren<Transform>()){
+				foreach(Transform go in tf){
+					go.gameObject.layer = LayerMask.NameToLayer("Default");
+				}
+			}
+		}
 	}
 
 	public static void level2(){
@@ -82,6 +94,77 @@ public class controller : MonoBehaviour {
 			rot = new Vector3(0f, rotationVal, 0f);
 			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
 			portalcam.enabled = false;
+			Destroy(Statics.LEVEL8_PORTAL);
+			break;
+		case Statics.LEVEL9:
+			portvector = Statics.lvl9_start - portal_start;
+			rotationVal = -20f;
+			rot = new Vector3(0f, rotationVal, 0f);
+			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
+			portalcam.enabled = false;
+			break;
+		case Statics.LEVEL9_AUFZUG:
+			portvector = Statics.lvl10_aufzug - portal_start;
+			rotationVal = 70f;
+			rot = new Vector3(0f, rotationVal, 0f);
+			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
+			break;
+		case Statics.LEVEL10_AUFZUG:
+			portvector = Statics.lvl11_start - portal_start;
+			rotationVal = 0f;
+			rot = new Vector3(0f, rotationVal, 0f);
+			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
+			break;
+		case Statics.LEVEL11_AUFZUG:
+			portvector = Statics.lvl12_start - portal_start;
+			rotationVal = 90f;
+			rot = new Vector3(0f, rotationVal, 0f);
+			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
+			break;
+		case Statics.LEVEL12_PORTAL:
+			portvector = Statics.lvl13_start - portal_start;
+			rotationVal = 0f;
+			rot = new Vector3(0f, rotationVal, 0f);
+			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
+			portalcam.enabled = false;
+			break;
+		case Statics.LEVEL14_AUFZUG:
+			portvector = Statics.lvl15_start - portal_start;
+			rotationVal = 180f;
+			rot = new Vector3(0f, rotationVal, 0f);
+			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
+			break;
+		case Statics.LEVEL15_AUFZUG:
+			portvector = Statics.lvl16_start - portal_start;
+			rotationVal = 180f;
+			rot = new Vector3(0f, rotationVal, 0f);
+			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
+			portalcam.enabled = true;
+			break;
+		case Statics.LEVELS1_PORTAL:
+			portvector = Statics.lvlS1_start - portal_start;
+			rotationVal = -70f;
+			rot = new Vector3(0f, rotationVal, 0f);
+			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
+			break;
+		case Statics.LEVELBACK1_PORTAL:
+			portvector = Statics.lvlG_start - portal_start;
+			rotationVal = 70f;
+			rot = new Vector3(0f, rotationVal, 0f);
+			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
+			break;
+		case Statics.LEVEL17_PORTAL:
+			portvector = Statics.lvl17_start - portal_start;
+			rotationVal = 180f;
+			rot = new Vector3(0f, rotationVal, 0f);
+			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
+			portalcam.enabled = false;
+			break;
+		case Statics.LEVELS2_PORTAL:
+			portvector = Statics.lvlS2_start - portal_start;
+			rotationVal = -90f;
+			rot = new Vector3(0f, rotationVal, 0f);
+			diff -= Quaternion.AngleAxis (rotationVal, Vector3.up) * diff;
 			break;
 		default:
 			portvector = Vector3.zero;
@@ -98,7 +181,11 @@ public class controller : MonoBehaviour {
 	}
 
 	public static void lasergoal(GameObject goal){
-		goal.GetComponent<Animation> ().Play ("Doorup");
-		portalcam.enabled = true;
+		if (laser != 2 && laser != 4) {
+			goal.GetComponent<Animation> ().Play ("Doorup");
+			portalcam.enabled = true;
+		} else if (laser == 4) {
+			Destroy (goal);
+		}
 	}
 }

@@ -43,7 +43,7 @@ public class Laserscript : MonoBehaviour {
 				}
 			}
 		} else {
-			lr.SetPosition(1, pos1 + transform.forward * 200.0f);
+			lr.SetPosition(1, pos1 + transform.right * (-1) * 200.0f);
 			if (hitCube != null) {
 				Lasercube lc = hitCube.GetComponent<Lasercube> ();
 				if (lc != null) {

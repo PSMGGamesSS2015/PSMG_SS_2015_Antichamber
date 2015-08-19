@@ -19,6 +19,16 @@ TagManager:
   - Lasergoal
   - Backwards
   - Level 8
+  - Level 9
+  - Stencil
+  - Prefab
+  - Level9 Stairs
+  - Level9 Floor
+  - Level15 Floor
+  - Level15 Stairs
+  - Small
+  - Rotator
+  - finalcube
   layers:
   - Default
   - TransparentFX

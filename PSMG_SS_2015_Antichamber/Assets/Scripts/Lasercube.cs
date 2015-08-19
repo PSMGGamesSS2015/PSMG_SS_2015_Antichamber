@@ -5,13 +5,12 @@ public class Lasercube : MonoBehaviour {
 	public bool shoot = false;
 	LineRenderer lr;
 	GameObject hitCube;
-	bool goal = false;
 	LayerMask lm;
 
 	// Use this for initialization
 	void Start () {
 		lr = GetComponent<LineRenderer> ();
-		lm = 1 << LayerMask.NameToLayer ("Doorportal");
+		lm = 1 << LayerMask.NameToLayer ("Doorportal") | 1 << LayerMask.NameToLayer("Ignore Raycast");
 		lm = ~lm; //reverse
 	}
 
@@ -57,9 +56,9 @@ public class Lasercube : MonoBehaviour {
 					hitCube = null;
 				}
 			}
-			if(hit.collider.gameObject.tag == "Lasergoal" && !goal){
+			if(hit.collider.gameObject.tag == "Lasergoal"){
 				controller.laser += 1;
-				goal = true;
+				Destroy(hit.collider);
 				controller.lasergoal(hit.collider.gameObject);
 			}
 		} else {

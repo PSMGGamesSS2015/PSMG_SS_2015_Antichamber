@@ -28,13 +28,49 @@ public class Teleport : MonoBehaviour {
 		}
 		if (gameObject.name == "Portal8") {
 			portal_id = Statics.LEVEL8;
+			Statics.LEVEL8_PORTAL = gameObject;
+			getStart();
+		}
+		if (gameObject.name == "Portal9") {
+			portal_id = Statics.LEVEL9;
+			Statics.LEVEL9_PORTAL = gameObject;
+			getStart();
+		}
+		if (gameObject.name == "Aufzug12") {
+			portal_id = Statics.LEVEL11_AUFZUG;
+			getStart();
+		}
+		if (gameObject.name == "Portal13") {
+			portal_id = Statics.LEVEL12_PORTAL;
+			getStart();
+		}
+		if (gameObject.name == "Portal17") {
+			portal_id = Statics.LEVEL17_PORTAL;
+			getStart();
+		}
+		if (gameObject.name == "PortalS1") {
+			portal_id = Statics.LEVELS1_PORTAL;
+			getStart();
+		}
+		if (gameObject.name == "PortalBack1") {
+			portal_id = Statics.LEVELBACK1_PORTAL;
+			getStart();
+		}
+		if (gameObject.name == "PortalS1") {
+			portal_id = Statics.LEVELS1_PORTAL;
 			getStart();
 		}
 	}
 	
 	void OnTriggerEnter (Collider col) {
 		if (col.tag == "Player") {
-			controller.teleport(portal_id, portal_start);
+			if(tag == "Small"){
+				if(controller.small){
+					controller.teleport(portal_id, portal_start);
+				}
+			}else {
+				controller.teleport(portal_id, portal_start);
+			}
 		}
 	}
 
