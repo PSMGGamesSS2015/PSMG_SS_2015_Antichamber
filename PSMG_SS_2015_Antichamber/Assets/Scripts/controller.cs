@@ -13,6 +13,8 @@ public class controller : MonoBehaviour {
 	public static Camera portalcam;
 	public static int retsel = 0;
 	bool solved = false;
+	public static AudioSource[] background;
+	static bool play = false;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +26,7 @@ public class controller : MonoBehaviour {
 			}
 		}
 		portalcam.enabled = false;
+		background = GetComponents<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -37,8 +40,12 @@ public class controller : MonoBehaviour {
 				}
 			}
 		}
+		if (play) {
+			play = false;
+			StartCoroutine (playbackgound ());
+		}
 	}
-
+	
 	public static void level2(){
 		foreach (GameObject go in GameObject.FindGameObjectsWithTag ("Level 1")) {
 			Destroy (go);
@@ -188,5 +195,22 @@ public class controller : MonoBehaviour {
 		} else if (laser == 4) {
 			Destroy (goal);
 		}
+	}
+
+	public static void sound(AudioSource src){
+		if(src != null){
+			foreach(AudioSource s in controller.background){
+				if(s.isPlaying){
+					s.Stop();
+				}
+			}
+			src.Play();
+			play = true;
+		}
+	}
+
+	IEnumerator playbackgound(){
+		yield return new WaitForSeconds(5.0f);
+		background [0].Play ();
 	}
 }

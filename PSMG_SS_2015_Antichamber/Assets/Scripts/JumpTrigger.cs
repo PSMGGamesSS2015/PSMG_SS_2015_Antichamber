@@ -9,7 +9,7 @@ public class JumpTrigger : MonoBehaviour {
 	void Start () {
 		grounded = false;
 	}
-	
+
 	void OnTriggerStay(Collider other){
 		if (other.gameObject.tag == "Floor" || other.gameObject.tag == "Cube") {
 			grounded = true;

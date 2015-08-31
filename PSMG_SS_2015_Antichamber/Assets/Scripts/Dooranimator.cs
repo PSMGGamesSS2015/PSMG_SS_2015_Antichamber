@@ -42,7 +42,7 @@ public class Dooranimator : MonoBehaviour {
 				open ();
 			}
 		}
-		else if (col.tag == "Player" && !col.isTrigger) {
+		else if ((col.tag == "Player" && !col.isTrigger) || col.gameObject.name == "Verwandlung") {
 			if(tag == "Backwards"){
 				float rotation = controller.player.transform.rotation.eulerAngles.y;
 				if(rotation > 130f && rotation < 230f){
@@ -72,7 +72,7 @@ public class Dooranimator : MonoBehaviour {
 				}
 			}
 		}
-		else if (col.tag == "Player" && !col.isTrigger) {
+		else if ((col.tag == "Player" && !col.isTrigger) || col.gameObject.name == "Verwandlung") {
 			if(tag == "Backwards"){
 				openable = false;
 				if(opened){

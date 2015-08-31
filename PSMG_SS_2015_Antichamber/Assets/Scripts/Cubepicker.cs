@@ -7,10 +7,13 @@ public class Cubepicker : MonoBehaviour {
 	GameObject go;
 	BoxCollider Trigger;
 	Rigidbody rb;
+	AudioSource take;
+
 	
 	// Use this for initialization
 	void Start () {
 		go = null;
+		take = GetComponents<AudioSource> () [2];
 	}
 	
 	// Update is called once per frame
@@ -65,6 +68,7 @@ public class Cubepicker : MonoBehaviour {
 		rb.useGravity = false;
 		rb.isKinematic = false;
 		rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+		take.Play ();
 	}
 
 	void release(){
@@ -76,5 +80,6 @@ public class Cubepicker : MonoBehaviour {
 		rb.useGravity = true;
 		rb = null;
 		go = null;
+		take.Play ();
 	}
 }

@@ -6,12 +6,14 @@ public class Lasercube : MonoBehaviour {
 	LineRenderer lr;
 	GameObject hitCube;
 	LayerMask lm;
+	AudioSource audi;
 
 	// Use this for initialization
 	void Start () {
 		lr = GetComponent<LineRenderer> ();
 		lm = 1 << LayerMask.NameToLayer ("Doorportal") | 1 << LayerMask.NameToLayer("Ignore Raycast");
 		lm = ~lm; //reverse
+		audi = GetComponents<AudioSource> () [1];
 	}
 
 	void FixedUpdate () {
@@ -28,6 +30,9 @@ public class Lasercube : MonoBehaviour {
 	}
 
 	void shootLaser(){
+		if(!audi.isPlaying){
+			audi.Play ();
+		}
 		lr.enabled = true;
 		Vector3 pos1;
 		RaycastHit hit;
@@ -74,6 +79,7 @@ public class Lasercube : MonoBehaviour {
 	}
 
 	public void stop(){
+		audi.Stop ();
 		shoot = false;
 	}
 }

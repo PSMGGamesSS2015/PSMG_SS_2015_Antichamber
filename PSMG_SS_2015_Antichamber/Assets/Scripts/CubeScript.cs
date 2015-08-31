@@ -8,6 +8,8 @@ public class CubeScript : MonoBehaviour {
 	public Quaternion rot;
 	float distanceToGround = 1f;
 	LayerMask lm;
+	AudioSource audi;
+
 	// Use this for initialization
 	void Start () {
 		start = transform.position;
@@ -15,6 +17,7 @@ public class CubeScript : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		lm = 1 << LayerMask.NameToLayer ("Doorportal") | 1 << LayerMask.NameToLayer ("Inactive");
 		lm = ~lm;
+		audi = GetComponents<AudioSource> ()[0];
 	}
 	
 	// Update is called once per frame
@@ -26,6 +29,9 @@ public class CubeScript : MonoBehaviour {
 		if (!other.isTrigger && other.gameObject != gameObject) {
 			rb.constraints = RigidbodyConstraints.FreezeAll;
 			rb.isKinematic = true;
+			if(GetComponent<AudioSource>()!=null){
+				audi.Play();
+			}
 		}
 	}
 	

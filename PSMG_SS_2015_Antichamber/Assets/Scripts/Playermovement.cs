@@ -14,6 +14,8 @@ public class Playermovement : MonoBehaviour {
 	public static Vector3 velocity;
 	public static Vector3 angularVelocity;
 	Rigidbody rb;
+	AudioSource run;
+	AudioSource jump;
 	
 	
 	
@@ -22,6 +24,8 @@ public class Playermovement : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		rb.freezeRotation = true;
 		rb.useGravity = false;
+		run = GetComponents<AudioSource> ()[0];
+		jump = GetComponents<AudioSource> ()[1];
 	}
 	
 	void FixedUpdate () {
@@ -55,6 +59,7 @@ public class Playermovement : MonoBehaviour {
 
 	void Update(){
 		if (JumpTrigger.grounded && Input.GetKeyDown(KeyCode.Space)) {
+			jump.Play();
 			GetComponent<Rigidbody>().velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
 		}
 		if (Input.GetKeyDown (KeyCode.LeftShift)) {
@@ -73,6 +78,11 @@ public class Playermovement : MonoBehaviour {
 			speed = 6f;
 			controller.slow = false;
 		}
+		if (velocity.magnitude > 0.3f && JumpTrigger.grounded) {
+			if(!run.isPlaying){
+				run.Play ();
+			}
+		}else run.Stop();
 	}
 
 	float CalculateJumpVerticalSpeed () {

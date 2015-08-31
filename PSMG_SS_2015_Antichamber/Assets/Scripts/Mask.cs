@@ -19,6 +19,7 @@ public class Mask : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider col){
+		UIScript.showMask = true;
 		if (col.tag == "Player" && !col.isTrigger) {
 			press = true;
 
@@ -26,6 +27,7 @@ public class Mask : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider col){
+		UIScript.showMask = false;
 		if (col.tag == "Player" && !col.isTrigger) {
 			press = false;
 		}
