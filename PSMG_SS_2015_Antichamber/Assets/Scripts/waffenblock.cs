@@ -11,10 +11,11 @@ public class waffenblock : MonoBehaviour {
 				GameObject.FindGameObjectWithTag("Stencil").layer = LayerMask.NameToLayer("Doorportal");
 				controller.hasWeapon = true;
 			}
-		}
-		else if (gameObject.name == "Mask") {
-			controller.hasMask = true;
-			controller.portalcam.enabled = true;
+			else if (gameObject.name == "Mask") {
+				controller.hasMask = true;
+				controller.portalcam.enabled = true;
+				Debug.Log (controller.hasMask);
+			}
 		}
 	}
 }

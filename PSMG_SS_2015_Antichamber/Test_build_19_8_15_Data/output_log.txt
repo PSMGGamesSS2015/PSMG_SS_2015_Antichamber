@@ -1,0 +1,24 @@
+Initialize engine version: 5.0.1f1 (5a2e8fe35a68)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 970 (ID=0x13c2)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: R:\Git\PSMG_SS_2015_Antichamber\PSMG_SS_2015_Antichamber\Test_build_19_8_15_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading R:\Git\PSMG_SS_2015_Antichamber\PSMG_SS_2015_Antichamber\Test_build_19_8_15_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: R:\Git\PSMG_SS_2015_Antichamber\PSMG_SS_2015_Antichamber\Test_build_19_8_15_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading R:\Git\PSMG_SS_2015_Antichamber\PSMG_SS_2015_Antichamber\Test_build_19_8_15_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: R:\Git\PSMG_SS_2015_Antichamber\PSMG_SS_2015_Antichamber\Test_build_19_8_15_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading R:\Git\PSMG_SS_2015_Antichamber\PSMG_SS_2015_Antichamber\Test_build_19_8_15_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.030 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: R:\Git\PSMG_SS_2015_Antichamber\PSMG_SS_2015_Antichamber\Test_build_19_8_15_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: R:\Git\PSMG_SS_2015_Antichamber\PSMG_SS_2015_Antichamber\Test_build_19_8_15_Data\Managed\System.dll (this message is harmless)
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: ee8 -> priority: 1 
+  Thread -> id: b88 -> priority: 1 

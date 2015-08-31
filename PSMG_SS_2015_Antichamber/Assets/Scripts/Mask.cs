@@ -7,7 +7,7 @@ public class Mask : MonoBehaviour {
 
 
 	void Update(){
-		if (Input.GetKeyDown (KeyCode.Q)) {
+		if (Input.GetKeyDown (KeyCode.Q) && controller.hasMask) {
 			if (press) {
 				if (!controller.small) {
 					small ();
@@ -21,6 +21,7 @@ public class Mask : MonoBehaviour {
 	void OnTriggerStay(Collider col){
 		if (col.tag == "Player" && !col.isTrigger) {
 			press = true;
+
 		}
 	}
 

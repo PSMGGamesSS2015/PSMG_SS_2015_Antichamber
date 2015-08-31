@@ -6,7 +6,7 @@ public class RotationCube : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		float rot = transform.rotation.eulerAngles.y;
-		if (rot > 110f && rot < 160f) {
+		if (rot > 110f && rot < 190f) {
 			if(!ok){
 				ok = true;
 				if(gameObject.transform.parent.name == "Level 9") {

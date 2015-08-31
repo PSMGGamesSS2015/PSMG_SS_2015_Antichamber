@@ -16,6 +16,7 @@ public class controller : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Cursor.visible = false;
 		player = GameObject.FindGameObjectWithTag ("Player");
 		foreach(Camera cam in player.GetComponentsInChildren<Camera>()){
 			if(!(cam.tag == "Main Camera")){
