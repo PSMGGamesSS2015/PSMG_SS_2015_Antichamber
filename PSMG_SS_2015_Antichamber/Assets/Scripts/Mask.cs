@@ -2,9 +2,7 @@
 using System.Collections;
 
 public class Mask : MonoBehaviour {
-
-	bool press = false;
-
+	bool press = false; //can player press Q?
 
 	void Update(){
 		if (Input.GetKeyDown (KeyCode.Q) && controller.hasMask) {
@@ -18,6 +16,7 @@ public class Mask : MonoBehaviour {
 		}
 	}
 
+	//player is in a mask area -> show UI
 	void OnTriggerStay(Collider col){
 		if (col.tag == "Player" && !col.isTrigger) {
 			UIScript.showMask = true;
@@ -25,6 +24,7 @@ public class Mask : MonoBehaviour {
 		}
 	}
 
+	//player left maks area -> hide UI
 	void OnTriggerExit(Collider col){
 		if (col.tag == "Player" && !col.isTrigger) {
 			UIScript.showMask = false;
@@ -32,7 +32,7 @@ public class Mask : MonoBehaviour {
 		}
 	}
 
-
+	//making player small
 	void small(){
 		if (!controller.small) {
 			controller.small = true;
@@ -43,7 +43,8 @@ public class Mask : MonoBehaviour {
 			controller.player.transform.position -= Vector3.up * 0.9f;
 		}
 	}
-
+	
+	//making player big
 	void big(){
 		if (controller.small) {
 			controller.small = false;

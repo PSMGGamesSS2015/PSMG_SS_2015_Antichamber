@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//teleporting the player if the specific trigger is entered (controllerscript)
 public class Teleport : MonoBehaviour {
 	int portal_id = 0;
 	Vector3 portal_start = Vector3.zero;

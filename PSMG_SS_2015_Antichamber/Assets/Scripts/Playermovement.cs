@@ -6,11 +6,11 @@ using System.Collections;
 
 public class Playermovement : MonoBehaviour {
 	
-	float speed = 6.0f;
-	public float gravity = 9.8f;
-	float maxVelocityChange = 1.0f;
+	float speed = 6.0f; //movementspeed
+	public float gravity = 9.8f; //gravity
+	float maxVelocityChange = 1.0f; 
 	float jumpHeight = 1.0f;
-	public float factor = 1.0f;
+	public float factor = 1.0f; //factor (if player is small: 1/10)
 	public static Vector3 velocity;
 	public static Vector3 angularVelocity;
 	Rigidbody rb;
@@ -20,7 +20,6 @@ public class Playermovement : MonoBehaviour {
 	
 	
 	void Awake () {
-		Cursor.visible = false;
 		rb = GetComponent<Rigidbody> ();
 		rb.freezeRotation = true;
 		rb.useGravity = false;
@@ -34,19 +33,19 @@ public class Playermovement : MonoBehaviour {
 		} else {
 			rb.angularVelocity = Vector3.zero;
 		}
-			// Calculate how fast we should be moving
-			Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-			targetVelocity = transform.TransformDirection(targetVelocity);
-			targetVelocity *= speed*factor;
+		// Calculate how fast we should be moving
+		Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+		targetVelocity = transform.TransformDirection(targetVelocity);
+		targetVelocity *= speed*factor;
 			
-			// Apply a force that attempts to reach our target velocity
-			Vector3 vel = GetComponent<Rigidbody>().velocity;
-			Vector3 velocityChange = (targetVelocity - vel);
-			velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange*factor, maxVelocityChange*factor);
-			velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange*factor, maxVelocityChange*factor);
-			velocityChange.y = 0;
-			rb.AddForce(velocityChange, ForceMode.VelocityChange);
-			rb.velocity = applyMaxSpeed (rb.velocity);
+		// Apply a force that attempts to reach our target velocity
+		Vector3 vel = GetComponent<Rigidbody>().velocity;
+		Vector3 velocityChange = (targetVelocity - vel);
+		velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange*factor, maxVelocityChange*factor);
+		velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange*factor, maxVelocityChange*factor);
+		velocityChange.y = 0;
+		rb.AddForce(velocityChange, ForceMode.VelocityChange);
+		rb.velocity = applyMaxSpeed (rb.velocity);
 			// Jump
 
 		
@@ -67,14 +66,6 @@ public class Playermovement : MonoBehaviour {
 			controller.slow = true;
 		}
 		if (Input.GetKeyUp (KeyCode.LeftShift)) {
-			speed = 6f;
-			controller.slow = false;
-		}
-		if (Input.GetKeyDown (KeyCode.LeftControl)) {
-			speed = 10f;
-			controller.slow = true;
-		}
-		if (Input.GetKeyUp (KeyCode.LeftControl)) {
 			speed = 6f;
 			controller.slow = false;
 		}

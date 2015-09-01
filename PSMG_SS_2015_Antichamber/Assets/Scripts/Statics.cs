@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+//class for static values and constants
 public class Statics : MonoBehaviour {
+	//portal IDs
 	public const int LEVEL2_FIRSTPORTAL = 1;
 	public const int LEVEL2_SECONDPORTAL = 2;
 	public const int LEVEL5_PORTAL = 3;
@@ -19,7 +22,14 @@ public class Statics : MonoBehaviour {
 	public const int LEVELBACK1_PORTAL = 15;
 	public const int LEVELS2_PORTAL = 16;
 	public const int LEVEL17_PORTAL = 17;
+
+	//important gameobjects
 	public static GameObject lvl2;
+	public static GameObject lvl5_cube;
+	public static GameObject LEVEL8_PORTAL; //Teleportscript
+	public static GameObject LEVEL9_PORTAL;
+
+	//portal goal positions
 	public static Vector3 lvl2_start;
 	public static Vector3 lvl5_start;
 	public static Vector3 lvl7_start;
@@ -37,9 +47,6 @@ public class Statics : MonoBehaviour {
 	public static Vector3 lvlS2_start;
 	public static Vector3 lvlG_start;
 	public static Vector3 lvl17_start;
-	public static GameObject lvl5_cube;
-	public static GameObject LEVEL8_PORTAL; //Teleportscript
-	public static GameObject LEVEL9_PORTAL;
 
 	void Start(){
 		foreach (GameObject go in GameObject.FindGameObjectsWithTag("Start")) {

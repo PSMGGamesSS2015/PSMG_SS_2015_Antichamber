@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//animation of playermodel at B Level
 public class playermodel : MonoBehaviour {
 	Animation anim;
 	bool played = false;

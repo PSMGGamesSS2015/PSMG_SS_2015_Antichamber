@@ -4,9 +4,9 @@ using System.Collections;
 
 public class UIScript : MonoBehaviour {
 	public static bool showMask = false;
-	Image mask;
+	Image mask; //mask icon
 	RectTransform[] elements;
-	Text cubes;
+	Text cubes; //# cube in weapon
 
 	// Use this for initialization
 	void Start () {

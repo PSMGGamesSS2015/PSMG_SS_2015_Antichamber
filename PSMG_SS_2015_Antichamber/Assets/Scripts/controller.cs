@@ -2,37 +2,38 @@
 using System.Collections;
 
 public class controller : MonoBehaviour {
-	public static bool slow = false;
-	public static GameObject player;
-	public static bool blockCamera = false;
-	public static int cubes = 0;
-	public static bool hasWeapon = false;
-	public static bool hasMask = false;
-	public static bool small = false;
-	public static int laser = 0;
-	public static Camera portalcam;
-	public static Camera weaponcam;
-	public static int retsel = 0;
-	bool solved = false;
-	public static AudioSource[] background;
-	int song = 0;
-	public static GameObject oncube;
+	public static bool slow = false; //is the player moving slow?
+	public static GameObject player; //player GameObject
+	public static bool blockCamera = false; // blocking camera while rotating a cube
+	public static int cubes = 0; // # of cubes in weapon
+	public static bool hasWeapon = false; //weapon already taken?
+	public static bool hasMask = false; //mask already taken?
+	public static bool small = false; //player shrinked with mask?
+	public static int laser = 0; //how many lasergoals are hit?
+	public static Camera portalcam; //doorportallayer camera
+	public static Camera weaponcam; //weaponcamera
+	public static int retsel = 0; //# of cubes solved at level 15
+	bool solved = false; //level 15 solved?
+	public static AudioSource[] background; //backgound music (Array of Audiosource with 2 elements)
+	int song = 0; //which song is next?
+	public static GameObject oncube; //cube which the player stands on
 
 	// Use this for initialization
 	void Start () {
-		Cursor.visible = false;
+		Cursor.visible = false; //setting mouse cursor invisible
 		player = GameObject.FindGameObjectWithTag ("Player");
 		foreach(Camera cam in player.GetComponentsInChildren<Camera>()){
 			if(!(cam.tag == "Main Camera")){
 				portalcam = cam;
 			}
 		}
-		portalcam.enabled = false;
+		portalcam.enabled = false; //disabled until first door portal
 		background = GetComponents<AudioSource> ();
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
+		//Level 15
 		if (retsel == 4 && !solved) {
 			solved = true;
 			Destroy(GameObject.FindGameObjectWithTag("Level15 Floor"));
@@ -42,13 +43,17 @@ public class controller : MonoBehaviour {
 				}
 			}
 		}
+
+		//background music
 		if (background [0].isPlaying) {
 			song = 1;
 		} else if (background [1].isPlaying) {
 			song = 0;
 		} else background [song].Play ();
 	}
-	
+
+
+	//Destroying level 1; setting the inactive parts of level 2 to active
 	public static void level2(){
 		foreach (GameObject go in GameObject.FindGameObjectsWithTag ("Level 1")) {
 			Destroy (go);
@@ -58,12 +63,25 @@ public class controller : MonoBehaviour {
 		}
 	}
 
+
+	/*teleporting:  -to next level
+	 * 				-to level start
+	 */
+
 	public static void teleport(int PORTAL_ID, Vector3 portal_start){
 		Vector3 portvector;
 		float rotationVal = 0f;
 		Vector3 rot;
-		Vector3 diff = player.transform.position - portal_start;
-		diff.y = 0;
+		Vector3 diff = player.transform.position - portal_start; //difference between player's position and teleport origin
+		diff.y = 0; //player height is one; start height is zero
+
+		/*for the PORTAL ID case do:
+		 *  portvector: Vector from teleport origin to teleport goal
+		 * 	rotationVal: The y - rotation to be performed with the teleport
+		 * 	rot: getting the y - rotation as Vector
+		 * 	-> rotating the difference bettween player's position and origin of teleport
+		 */
+
 		switch (PORTAL_ID) {
 		case Statics.LEVEL2_FIRSTPORTAL:
 			portvector = Statics.lvl2_start - portal_start;
@@ -183,19 +201,20 @@ public class controller : MonoBehaviour {
 			diff = Vector3.zero;
 			break;
 		}
+
 		player.transform.Rotate(rot);
 		Vector3 velocity = player.GetComponent<Rigidbody> ().velocity;
-		velocity = Quaternion.AngleAxis (rotationVal, Vector3.up) * velocity;
+		velocity = Quaternion.AngleAxis (rotationVal, Vector3.up) * velocity; //rotating the velocity 
 		player.GetComponent<Rigidbody> ().velocity = velocity;
 		player.transform.position += portvector;
 		player.transform.position -= diff;
 	}
 
 	public static void lasergoal(GameObject goal){
-		if (laser != 2 && laser != 4) {
+		if (laser != 2 && laser != 4) { //determining which lasergoal was hit (1:level 6 finsihed; 3: level 12 finished)
 			goal.GetComponent<Animation> ().Play ("Doorup");
 			portalcam.enabled = true;
-		} else if (laser == 4) {
+		} else if (laser == 4) { //last level: opening the 1 sector
 			Destroy (goal);
 		}
 	}

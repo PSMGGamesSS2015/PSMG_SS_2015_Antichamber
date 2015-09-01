@@ -2,14 +2,14 @@
 using System.Collections;
 
 public class Dooranimator : MonoBehaviour {
-	Animation[] doors;
-	bool opened = false;
-	public bool openable = true;
+	Animation[] doors; //left and right side animation
+	bool opened = false; //door opened
+	public bool openable = true; //is it openable?
 
 	// Use this for initialization
 	void Start () {
 		doors = gameObject.GetComponentsInChildren<Animation> ();
-		if (tag == "Finaldoor") {
+		if (tag == "Finaldoor") { //these doors are initially opened and can't be reopened after closing
 			openable = false;
 			opened = true;
 			foreach(Animation animation in doors){
@@ -18,7 +18,7 @@ public class Dooranimator : MonoBehaviour {
 		}
 	}
 	
-	// Update is called once per frame
+	// opening a door
 	public void open () {
 		foreach(Animation animation in doors){
 			if(!animation.isPlaying && openable){
@@ -27,6 +27,8 @@ public class Dooranimator : MonoBehaviour {
 			}
 		}
 	}
+
+	//closing a door
 	public void close () {
 		foreach(Animation animation in doors){
 			if(!animation.isPlaying){
@@ -37,13 +39,13 @@ public class Dooranimator : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider col){
-		if (tag == "Triggerdoor") {
+		if (tag == "Triggerdoor") { //opens if cube is on the trigger
 			if (col.tag == "Cube" && !opened) {
 				open ();
 			}
 		}
 		else if ((col.tag == "Player" && !col.isTrigger) || col.gameObject.name == "Verwandlung") {
-			if(tag == "Backwards"){
+			if(tag == "Backwards"){ //only opening if player runs through backwards
 				float rotation = controller.player.transform.rotation.eulerAngles.y;
 				if(rotation > 130f && rotation < 230f){
 					if(!opened){

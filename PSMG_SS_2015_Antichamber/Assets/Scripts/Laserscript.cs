@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//same as lasercube.cs; no stop
 public class Laserscript : MonoBehaviour {
 	LineRenderer lr;
 	Vector3 pos1;
@@ -8,7 +9,7 @@ public class Laserscript : MonoBehaviour {
 	GameObject hitCube;
 	LayerMask lm;
 
-	// Use this for initialization
+
 	void Start () {
 		lr = GetComponent<LineRenderer> ();
 		pos1 = gameObject.transform.position;
@@ -16,8 +17,7 @@ public class Laserscript : MonoBehaviour {
 		lm = 1 << LayerMask.NameToLayer ("Doorportal");
 		lm = ~lm;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		Debug.DrawLine (transform.position, transform.position + transform.forward);
 		if (Physics.Raycast (pos1, transform.right * (-1), out hit, 200.0f, lm)) {

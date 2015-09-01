@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+//is the player grounded and can jump?
 public class JumpTrigger : MonoBehaviour {
 
 	public static bool grounded;
 
-	// Use this for initialization
 	void Start () {
 		grounded = false;
 	}

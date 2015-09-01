@@ -3,6 +3,7 @@ using System.Collections;
 
 public class waffenblock : MonoBehaviour {
 
+	//playing sound if weapon/mask getts picked up and notifies controller
 	void OnCollisionEnter (Collision col) {
 		if (col.collider.tag == "Player") {
 			transform.parent.gameObject.GetComponent<AudioSource>().Play();

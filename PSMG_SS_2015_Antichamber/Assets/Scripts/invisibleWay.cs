@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//activates the meshrenderer and boxcollider if the player is near and moving slow
 public class invisibleWay : MonoBehaviour {
 	MeshRenderer mr;
 	BoxCollider bc;
-	// Use this for initialization
+
 	void Start () {
 		mr = GetComponent<MeshRenderer> ();
 		mr.enabled = false;
