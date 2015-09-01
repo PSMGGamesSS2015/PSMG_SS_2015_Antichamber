@@ -48,7 +48,11 @@ public class Statics : MonoBehaviour {
 	public static Vector3 lvlG_start;
 	public static Vector3 lvl17_start;
 
-	void Start(){
+	public static Quaternion rot;
+	public static Vector3 pos;
+	public static int clickid;
+
+	void  OnEnable () {
 		foreach (GameObject go in GameObject.FindGameObjectsWithTag("Start")) {
 			if(go.transform.parent.tag == "Level 2"){
 				lvl2 = go.transform.parent.gameObject;

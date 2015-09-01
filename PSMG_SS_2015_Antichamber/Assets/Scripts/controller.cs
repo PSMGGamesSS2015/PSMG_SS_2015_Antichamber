@@ -17,9 +17,10 @@ public class controller : MonoBehaviour {
 	public static AudioSource[] background; //backgound music (Array of Audiosource with 2 elements)
 	int song = 0; //which song is next?
 	public static GameObject oncube; //cube which the player stands on
+	public static GameObject menu; //menu
 
 	// Use this for initialization
-	void Start () {
+	void OnEnable () {
 		Cursor.visible = false; //setting mouse cursor invisible
 		player = GameObject.FindGameObjectWithTag ("Player");
 		foreach(Camera cam in player.GetComponentsInChildren<Camera>()){
@@ -29,6 +30,8 @@ public class controller : MonoBehaviour {
 		}
 		portalcam.enabled = false; //disabled until first door portal
 		background = GetComponents<AudioSource> ();
+		menu = GameObject.FindWithTag ("Menu");
+		menu.GetComponent<Canvas> ().enabled = false;
 	}
 	
 
@@ -50,6 +53,12 @@ public class controller : MonoBehaviour {
 		} else if (background [1].isPlaying) {
 			song = 0;
 		} else background [song].Play ();
+
+		
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			menu.GetComponent<Canvas>().enabled = true;
+			Cursor.visible = true;
+		}
 	}
 
 

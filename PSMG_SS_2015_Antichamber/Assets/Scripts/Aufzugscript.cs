@@ -9,7 +9,7 @@ public class Aufzugscript : MonoBehaviour {
 	Vector3 portal_start = Vector3.zero; //position of the teleport origin
 
 	// Gets the right data(portal ID and Teleport origin) for each gameobject
-	void Start () {
+	void  OnEnable (){
 		if (gameObject.name == "Aufzug9") {
 			portal_id = Statics.LEVEL9_AUFZUG;
 			getStart();

@@ -7,7 +7,7 @@ public class JumpTrigger : MonoBehaviour {
 
 	public static bool grounded;
 
-	void Start () {
+	void  OnEnable () {
 		grounded = false;
 	}
 

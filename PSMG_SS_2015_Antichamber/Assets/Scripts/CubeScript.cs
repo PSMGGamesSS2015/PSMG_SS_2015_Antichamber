@@ -17,7 +17,7 @@ public class CubeScript : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void  OnEnable () {
 		start = transform.position;
 		rot = transform.rotation;
 		rb = GetComponent<Rigidbody> ();

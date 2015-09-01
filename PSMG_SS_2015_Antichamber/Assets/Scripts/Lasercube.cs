@@ -9,7 +9,7 @@ public class Lasercube : MonoBehaviour {
 	AudioSource audi;//lasersound
 
 	// Use this for initialization
-	void Start () {
+	void  OnEnable () {
 		lr = GetComponent<LineRenderer> ();
 		lm = 1 << LayerMask.NameToLayer ("Doorportal") | 1 << LayerMask.NameToLayer("Ignore Raycast"); 
 		lm = ~lm; //raycasts using this layermask now ignore "Doorportal" and "Ignore Raycast" layer

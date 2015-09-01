@@ -6,7 +6,7 @@ public class playermodel : MonoBehaviour {
 	Animation anim;
 	bool played = false;
 	// Use this for initialization
-	void Start () {
+	void  OnEnable () {
 		anim = GetComponent<Animation>();
 	}
 	

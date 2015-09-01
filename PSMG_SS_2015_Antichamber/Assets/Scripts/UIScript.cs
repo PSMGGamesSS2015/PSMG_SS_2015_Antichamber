@@ -9,7 +9,7 @@ public class UIScript : MonoBehaviour {
 	Text cubes; //# cube in weapon
 
 	// Use this for initialization
-	void Start () {
+	void  OnEnable () {
 		elements = GetComponentsInChildren<RectTransform> ();
 		foreach (RectTransform tf in elements) {
 			if (tf.gameObject.name == "Mask") {

@@ -18,7 +18,7 @@ public class Mask : MonoBehaviour {
 
 	//player is in a mask area -> show UI
 	void OnTriggerStay(Collider col){
-		if (col.tag == "Player" && !col.isTrigger) {
+		if (col.tag == "Player" && !col.isTrigger  && controller.hasMask) {
 			UIScript.showMask = true;
 			press = true;
 		}

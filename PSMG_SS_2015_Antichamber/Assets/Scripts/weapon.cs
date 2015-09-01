@@ -17,7 +17,7 @@ public class weapon : MonoBehaviour {
 	AudioSource zoom;
 	
 	// Use this for initialization
-	void Start () {
+	void  OnEnable () {
 		prefab = GameObject.FindGameObjectWithTag ("Prefab");
 		prefab.tag = "Cube";
 		dp = 1 << LayerMask.NameToLayer ("Doorportal");

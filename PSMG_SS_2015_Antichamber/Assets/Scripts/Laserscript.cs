@@ -10,7 +10,7 @@ public class Laserscript : MonoBehaviour {
 	LayerMask lm;
 
 
-	void Start () {
+	void  OnEnable () {
 		lr = GetComponent<LineRenderer> ();
 		pos1 = gameObject.transform.position;
 		lr.SetPosition (0, pos1);

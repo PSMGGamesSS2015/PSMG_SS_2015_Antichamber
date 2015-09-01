@@ -7,7 +7,7 @@ public class Dooranimator : MonoBehaviour {
 	public bool openable = true; //is it openable?
 
 	// Use this for initialization
-	void Start () {
+	void  OnEnable () {
 		doors = gameObject.GetComponentsInChildren<Animation> ();
 		if (tag == "Finaldoor") { //these doors are initially opened and can't be reopened after closing
 			openable = false;

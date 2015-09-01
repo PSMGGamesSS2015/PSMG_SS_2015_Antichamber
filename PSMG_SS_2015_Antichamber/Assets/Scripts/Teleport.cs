@@ -6,7 +6,7 @@ public class Teleport : MonoBehaviour {
 	int portal_id = 0;
 	Vector3 portal_start = Vector3.zero;
 	// Use this for initialization
-	void Start () {
+	void  OnEnable ()  {
 		if (gameObject.name == "Portal1") {
 			portal_id = Statics.LEVEL2_FIRSTPORTAL;
 			getStart();

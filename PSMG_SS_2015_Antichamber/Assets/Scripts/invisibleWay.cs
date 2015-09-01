@@ -6,7 +6,7 @@ public class invisibleWay : MonoBehaviour {
 	MeshRenderer mr;
 	BoxCollider bc;
 
-	void Start () {
+	void  OnEnable () {
 		mr = GetComponent<MeshRenderer> ();
 		mr.enabled = false;
 

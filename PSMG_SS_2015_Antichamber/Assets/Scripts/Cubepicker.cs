@@ -9,7 +9,7 @@ public class Cubepicker : MonoBehaviour {
 	Rigidbody rb; //cubes rigidbody
 	AudioSource take;
 
-	void Start () {
+	void  OnEnable (){
 		go = null;
 		take = GetComponents<AudioSource> () [2];
 	}
