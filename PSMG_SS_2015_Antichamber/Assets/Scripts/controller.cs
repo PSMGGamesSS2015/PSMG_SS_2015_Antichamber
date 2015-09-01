@@ -11,10 +11,11 @@ public class controller : MonoBehaviour {
 	public static bool small = false;
 	public static int laser = 0;
 	public static Camera portalcam;
+	public static Camera weaponcam;
 	public static int retsel = 0;
 	bool solved = false;
 	public static AudioSource[] background;
-	static bool play = false;
+	int song = 0;
 	public static GameObject oncube;
 
 	// Use this for initialization
@@ -41,10 +42,11 @@ public class controller : MonoBehaviour {
 				}
 			}
 		}
-		if (play) {
-			play = false;
-			StartCoroutine (playbackgound ());
-		}
+		if (background [0].isPlaying) {
+			song = 1;
+		} else if (background [1].isPlaying) {
+			song = 0;
+		} else background [song].Play ();
 	}
 	
 	public static void level2(){
@@ -196,22 +198,5 @@ public class controller : MonoBehaviour {
 		} else if (laser == 4) {
 			Destroy (goal);
 		}
-	}
-
-	public static void sound(AudioSource src){
-		if(src != null){
-			foreach(AudioSource s in controller.background){
-				if(s.isPlaying){
-					s.Stop();
-				}
-			}
-			src.Play();
-			play = true;
-		}
-	}
-
-	IEnumerator playbackgound(){
-		yield return new WaitForSeconds(5.0f);
-		background [0].Play ();
 	}
 }

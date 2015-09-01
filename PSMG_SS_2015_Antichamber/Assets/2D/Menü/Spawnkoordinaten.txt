@@ -1,0 +1,20 @@
+		  X   Y    Z
+
+Level 1:	  0   1    0
+Level 2: 	 18   1    5		(Überlappung mit Level 1, care)
+Level 3: 	 42   1   27
+Level 4: 	 30   1  -10
+Level 5: 	 50   17  27
+Level 6: 	 55   17  20
+Level 7: 	-30   1   -4
+Level 8: 	-30   1   33
+Level 9: 	-40   1   66		(Unter der Treppe stimmt, oder?)
+Level 10: 	-37   7   90
+Level 11: 	115   51  101
+Level 12: 	 25  202  70
+Level 13: 	 60   1   64
+Level 14: 	 84   10  88
+Level 15: 	 82   2   43
+Level 16: 	-90   1  -21
+Level 17: 	 20   1  -67
+Level 18 - 22: 	 28   5  -136	

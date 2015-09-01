@@ -13,6 +13,8 @@ public class weapon : MonoBehaviour {
 	LayerMask lm;
 	LayerMask dp;
 	LineRenderer lr;
+	AudioSource rotating;
+	AudioSource zoom;
 	
 	// Use this for initialization
 	void Start () {
@@ -23,6 +25,9 @@ public class weapon : MonoBehaviour {
 		lm = 1 << LayerMask.NameToLayer ("Inactive") | 1 << LayerMask.NameToLayer("Doorportal") | 1 << LayerMask.NameToLayer("Ignore Raycast");
 		lm = ~lm; //reverse
 		lr = GetComponent<LineRenderer> ();
+		lr.enabled = false;
+		rotating = GetComponents<AudioSource>()[3];
+		zoom = GetComponents<AudioSource>()[4];
 	}
 	
 	// Update is called once per frame
@@ -51,6 +56,9 @@ public class weapon : MonoBehaviour {
 			}
 			if (Input.GetAxis ("Mouse ScrollWheel") != 0) {
 				if (update) {
+					if(!zoom.isPlaying){
+						zoom.Play();
+					}
 					distance += Input.GetAxis ("Mouse ScrollWheel") * 10f * factor;
 					if (distance <= 1f * factor) {
 						if (go.tag != "Lasercube") {
@@ -65,7 +73,7 @@ public class weapon : MonoBehaviour {
 					if (controller.cubes > 0 && Input.GetAxis ("Mouse ScrollWheel") > 0) {
 						RaycastHit hit;
 						if (Physics.Raycast (ray.origin, Camera.main.transform.forward, out hit, 200f, lm)) {
-							if((ray.origin - hit.point).magnitude > 2f){
+							if((ray.origin - hit.point).magnitude > 4f){
 								GameObject cube = (GameObject)Instantiate (prefab, transform.position + transform.forward * 2f * factor , Quaternion.identity);
 								go = cube;
 								go.transform.localScale *= factor;
@@ -116,6 +124,9 @@ public class weapon : MonoBehaviour {
 				//rb.transform.RotateAround(controller.player.transform.position, Vector3.up, Playermovement.angularVelocity.y);
 				//rb.angularVelocity = Vector3.Lerp (rb.angularVelocity, Vector3.zero, Time.fixedDeltaTime * 10);
 				if (controller.blockCamera) {
+					if(!rotating.isPlaying){
+						rotating.Play();
+					}
 					if(controller.slow){
 						rb.AddTorque (0f, -Input.GetAxis ("Mouse X") * factor, 0f);
 					}else{
@@ -128,17 +139,19 @@ public class weapon : MonoBehaviour {
 	}
 	
 	void pick(){
-		foreach(BoxCollider col in go.GetComponents<BoxCollider> ()){
-			if(col.isTrigger){
-				Trigger = col;
-				Trigger.enabled = false;
+		if ((controller.small && go.transform.localScale.y < 1f) || (!controller.small && go.transform.localScale.y == 1f)) {
+			foreach (BoxCollider col in go.GetComponents<BoxCollider> ()) {
+				if (col.isTrigger) {
+					Trigger = col;
+					Trigger.enabled = false;
+				}
 			}
+			update = true;
+			rb = go.GetComponent<Rigidbody> ();
+			rb.useGravity = false;
+			rb.isKinematic = false;
+			rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 		}
-		update = true;
-		rb = go.GetComponent<Rigidbody> ();
-		rb.useGravity = false;
-		rb.isKinematic = false;
-		rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 	}
 	
 	void release(){

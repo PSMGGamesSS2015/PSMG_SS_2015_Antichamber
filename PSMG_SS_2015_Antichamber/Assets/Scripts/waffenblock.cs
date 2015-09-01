@@ -5,17 +5,19 @@ public class waffenblock : MonoBehaviour {
 
 	void OnCollisionEnter (Collision col) {
 		if (col.collider.tag == "Player") {
-			controller.sound (GetComponent<AudioSource>());
-			if(gameObject.name == "Waffe_Cube"){
+			transform.parent.gameObject.GetComponent<AudioSource>().Play();
+			if(gameObject.name == "Waffe"){
 				controller.portalcam.enabled = true;
 				Statics.LEVEL9_PORTAL.layer = LayerMask.NameToLayer("Default");
 				GameObject.FindGameObjectWithTag("Stencil").layer = LayerMask.NameToLayer("Doorportal");
 				controller.hasWeapon = true;
+				controller.weaponcam.enabled = true;
 			}
 			else if (gameObject.name == "Mask") {
 				controller.hasMask = true;
 				controller.portalcam.enabled = true;
 			}
+			Destroy(gameObject);
 		}
 	}
 }

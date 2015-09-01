@@ -27,7 +27,6 @@ public class Aufzugscript : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col){
 		if (col.tag == "Player" && !col.isTrigger && !entered) {
-			controller.sound (GetComponent<AudioSource>());
 			entered = true;
 			Dooranimator da = transform.parent.gameObject.GetComponent<Dooranimator> ();
 			da.openable = false;
