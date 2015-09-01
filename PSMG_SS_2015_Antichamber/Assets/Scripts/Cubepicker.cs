@@ -33,6 +33,9 @@ public class Cubepicker : MonoBehaviour {
 					release ();
 				}
 			}
+			if(controller.oncube == go && go != null){
+				release();
+			}
 		}
 	}
 	

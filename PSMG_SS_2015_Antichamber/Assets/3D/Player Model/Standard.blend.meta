@@ -71,7 +71,7 @@ ModelImporter:
     13700000: Charakter_MeshPart0
     13700002: Charakter_MeshPart1
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:

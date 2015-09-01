@@ -12,6 +12,7 @@ public class weapon : MonoBehaviour {
 	Rigidbody rb;
 	LayerMask lm;
 	LayerMask dp;
+	LineRenderer lr;
 	
 	// Use this for initialization
 	void Start () {
@@ -21,10 +22,13 @@ public class weapon : MonoBehaviour {
 		dp = ~dp;
 		lm = 1 << LayerMask.NameToLayer ("Inactive") | 1 << LayerMask.NameToLayer("Doorportal") | 1 << LayerMask.NameToLayer("Ignore Raycast");
 		lm = ~lm; //reverse
+		lr = GetComponent<LineRenderer> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		Ray rayy = Camera.main.ScreenPointToRay (new Vector3 (Camera.main.pixelWidth*3 / 5, Camera.main.pixelHeight*2 / 5, 0));
+		lr.SetPosition (0, rayy.origin);
 		if (controller.hasWeapon) {
 			factor = controller.player.GetComponent<Playermovement>().factor;
 			Ray ray = Camera.main.ScreenPointToRay (new Vector3 (Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
@@ -59,12 +63,17 @@ public class weapon : MonoBehaviour {
 					}
 				} else {
 					if (controller.cubes > 0 && Input.GetAxis ("Mouse ScrollWheel") > 0) {
-						GameObject cube = (GameObject)Instantiate (prefab, transform.position + transform.forward * 2f * factor , Quaternion.identity);
-						go = cube;
-						go.transform.localScale *= factor;
-						controller.cubes -= 1;
-						distance = 3f * factor;
-						pick ();
+						RaycastHit hit;
+						if (Physics.Raycast (ray.origin, Camera.main.transform.forward, out hit, 200f, lm)) {
+							if((ray.origin - hit.point).magnitude > 2f){
+								GameObject cube = (GameObject)Instantiate (prefab, transform.position + transform.forward * 2f * factor , Quaternion.identity);
+								go = cube;
+								go.transform.localScale *= factor;
+								controller.cubes -= 1;
+								distance = 3f * factor;
+								pick ();
+							}
+						}
 					}
 				}
 			}
@@ -75,6 +84,9 @@ public class weapon : MonoBehaviour {
 					controller.blockCamera = true;
 				}
 			}
+			if(controller.oncube == go && go != null){
+				release();
+			}
 		}
 	}
 	
@@ -84,6 +96,7 @@ public class weapon : MonoBehaviour {
 			Vector3 pos = ray.origin + Camera.main.transform.forward * distance;
 			Vector3 coll = Vector3.zero;
 			if (update) {
+				lr.enabled = true;
 				RaycastHit cubeHit;
 				if (Physics.Raycast (ray.origin, Camera.main.transform.forward, out cubeHit, 200f, lm)) {
 					if (cubeHit.collider.gameObject != go) {
@@ -109,7 +122,8 @@ public class weapon : MonoBehaviour {
 						rb.AddTorque (0f, -Input.GetAxis ("Mouse X") * 10f * factor, 0f);
 					}
 				}
-			}
+				lr.SetPosition (1, go.transform.position);
+			}else lr.enabled = false;
 		}
 	}
 	

@@ -15,6 +15,7 @@ public class controller : MonoBehaviour {
 	bool solved = false;
 	public static AudioSource[] background;
 	static bool play = false;
+	public static GameObject oncube;
 
 	// Use this for initialization
 	void Start () {
