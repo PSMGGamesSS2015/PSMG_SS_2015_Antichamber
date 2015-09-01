@@ -3,7 +3,33 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Level 1
+  - Level 2
+  - Floor
+  - Start
+  - Reset
+  - Level 5
+  - Level 14
+  - Finaldoor
+  - Cube
+  - Triggerdoor
+  - Level 7
+  - Lasercube
+  - Lasergoal
+  - Backwards
+  - Level 8
+  - Level 9
+  - Stencil
+  - Prefab
+  - Level9 Stairs
+  - Level9 Floor
+  - Level15 Floor
+  - Level15 Stairs
+  - Small
+  - Rotator
+  - finalcube
+  - Menu
   layers:
   - Default
   - TransparentFX
@@ -13,9 +39,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Inactive
+  - Doorportal
+  - Destroyer
   - 
   - 
   - 

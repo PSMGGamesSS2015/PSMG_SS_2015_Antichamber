@@ -3,29 +3,34 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class UIScript : MonoBehaviour {
-
-	Text text;
+	public static bool showMask = false;
+	Image mask; //mask icon
+	RectTransform[] elements;
+	Text cubes; //# cube in weapon
 
 	// Use this for initialization
-	void Start () {
-		text = GetComponent<Text> ();
-		text.enabled = false;
+	void  OnEnable () {
+		elements = GetComponentsInChildren<RectTransform> ();
+		foreach (RectTransform tf in elements) {
+			if (tf.gameObject.name == "Mask") {
+				mask = tf.gameObject.GetComponent<Image> ();
+			}
+			if(tf.gameObject.name == "Text"){
+				cubes = tf.gameObject.GetComponent<Text>();
+				cubes.enabled = false;
+			}
+		}
+		controller.weaponcam = GetComponentInChildren<Camera> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//shows "Press E to pick" if the player can pick up a cube
-		if (PickTrigger.interact) {
-			text.text = "Press E to pick";
-			text.enabled = true;
-			return;
+		if (showMask) {
+			mask.enabled = true;
+		} else mask.enabled = false;
+		if (controller.hasWeapon) {
+			cubes.enabled = true;
+			cubes.text = "" + controller.cubes;
 		}
-		//shows "Press E to release" if the player can release up a cube
-		if (PickTrigger.releasable) {
-			text.text = "Press E to release";
-			text.enabled = true;
-			return;
-		}
-		text.enabled = false;
 	}
 }
