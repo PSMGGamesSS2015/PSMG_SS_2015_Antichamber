@@ -78,9 +78,9 @@ public class controller : MonoBehaviour {
 	 */
 
 	public static void teleport(int PORTAL_ID, Vector3 portal_start){
-		Vector3 portvector;
+		Vector3 portvector = Vector3.zero;
 		float rotationVal = 0f;
-		Vector3 rot;
+		Vector3 rot = Vector3.zero;
 		Vector3 diff = player.transform.position - portal_start; //difference between player's position and teleport origin
 		diff.y = 0; //player height is one; start height is zero
 
@@ -92,6 +92,11 @@ public class controller : MonoBehaviour {
 		 */
 
 		switch (PORTAL_ID) {
+		case 18:
+			diff = Vector3.zero;
+			player.transform.position = new Vector3(0f,1f,-4f);
+			player.transform.rotation = Quaternion.identity;
+			break;
 		case Statics.LEVEL2_FIRSTPORTAL:
 			portvector = Statics.lvl2_start - portal_start;
 			rotationVal = 90f;

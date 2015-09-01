@@ -7,6 +7,10 @@ public class Teleport : MonoBehaviour {
 	Vector3 portal_start = Vector3.zero;
 	// Use this for initialization
 	void  OnEnable ()  {
+		if (gameObject.name == "Portal0") {
+			portal_id = 18;
+			portal_start = Vector3.zero;
+		}
 		if (gameObject.name == "Portal1") {
 			portal_id = Statics.LEVEL2_FIRSTPORTAL;
 			getStart();
@@ -71,6 +75,9 @@ public class Teleport : MonoBehaviour {
 				}
 			}else {
 				controller.teleport(portal_id, portal_start);
+				if(name == "Portal0"){
+					Destroy(transform.parent.gameObject);
+				}
 			}
 		}
 	}
